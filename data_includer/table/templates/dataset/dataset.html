@@ -1,0 +1,47 @@
+{% extends 'dataset/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="detail">
+        <div class="detail-static-info">
+            <div class="detail-description">
+                <h1 class="dataset-title">{{dataset.file.name|split:"/"|last}}</h1>
+                <p><img class="detail-img" src="{% static 'dataset/img/csv_placeholder.png' %}"></p>
+                <h4 class="dataset-description">{{dataset.description|linebreaks}}</h4>
+            </div>
+
+            {% if user.is_authenticated and user.pk == dataset.user_id or user.is_superuser %}
+            <div class="crud">
+                <a class="crud-update" href="{% url 'dataset_update' dataset.pk %}">edit</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="table">
+            <button id="toggle-button" onclick="toggleTable()">Expand table</button>
+            <table id="table" class="table-sortable hidden">
+                <thead>
+                    <tr>
+                        {% for col in df.columns %}
+                          <th>
+                            {{col}}
+                          </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, row in df.iterrows %}
+                      <tr>
+                        {% for cell in row %}
+                          <td>
+                            {{cell}}
+                          </td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data Includer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" href="{% static 'dataset/css/style.css' %}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'dataset/css/media.css' %}" rel="stylesheet" />
+	<link type="image/x-icon" rel="icon" href="{% static 'dataset/img/app_logo.png' %}"/>
+</head>
+<body>
+    <header>
+        {% block mainmenu %}
+        <ul class="mainmenu" id="mainmenu">
+
+            <li class="logo">
+                <a href="{% url 'intro' %}" class="menu-link">
+                    <img class="logo" src="{% static 'dataset/img/app_logo.png' %}" alt="">
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'dataset_list' %}" class="menu-link">list of datasets</a>
+            </li>
+
+            {% if request.user.is_authenticated %}
+            <li class="last"> 
+                <a href="{% url 'user_profile' user.pk %}" class="menu-link">{{user.username}}</a>
+                <span class="last-diversify">/</span>
+                <a href="{% url 'logout' %}" class="menu-link">Logout</a>
+            </li>
+            {% else %}
+            <li class="last">
+                <a href="{% url 'login' %}" class="menu-link">Login</a>
+                <span class="last-diversify">/</span>
+                <a href="{% url 'register' %}" class="menu-link">Register</a>
+            </li>
+            {% endif %}
+            
+        </ul>
+        {% endblock mainmenu %}
+    </header>
+    <main>
+        <div class="content-block">
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+            {% if page_obj.has_other_pages %}
+            <nav class="pagination">
+                <ul id="pagination">
+                    {% if page_obj.has_previous %}
+                    {% if 1 < page_obj.previous_page_number|add:-1 %}
+                    <li class="page">
+                        <a href="?page=1">&laquo;</a>
+                    </li>
+                    {% endif %}
+                    <li class="page">
+                        <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                    </li>
+                    {% endif %}
+
+                    {% for p in paginator.page_range %}
+                    {% if page_obj.number == p %}
+                    <li class="page page-selected">{{ p }}</li>
+                    {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+                    <li class="page">
+                        <a href="?page={{ p }}">{{ p }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li class="page">
+                        <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                    </li>
+                    {% if page_obj.paginator.num_pages > page_obj.next_page_number|add:1 %}
+                    <li class="page">
+                        <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                    </li>
+                    {% endif %}
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </main>
+    
+    <footer>
+		<hr>
+		<p>&copy; Data Includer. All rights reserved.</p>
+	</footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'dataset/js/ajax.js' %}"></script>
+    <script src="{% static 'dataset/js/app.js' %}"></script>
+
+</body>
+</html>

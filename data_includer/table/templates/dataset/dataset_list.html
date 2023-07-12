@@ -1,0 +1,57 @@
+{% extends 'dataset/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="action-menu">
+	<form method="GET" action="{% url 'dataset_search' %}" id="search_form">
+		<input type="text" name="query" placeholder="Input csv name" id="search_input">
+	</form>
+	<div class="dataset-add">
+		<a href="{% url 'dataset_add' %}" class="menu-link">ADD</a>
+	</div>
+</div>
+
+<ul class="dataset-list" id="dataset-list">
+	{% for dataset in datasets %}
+		<li class="dataset">
+			<div class="dataset-container-date">
+				<p class="dataset-date">Date: {{dataset.modified_date|date:"d-m-T H:i:s"}}</p>
+			</div>
+
+			<div class="dataset-info">
+				<div class="dataset-static-info">
+					<p><img class="dataset-img" src="{% static 'dataset/img/csv_placeholder.png' %}" alt=""></p>
+
+					<h2>{{dataset.file.name|split:"/"|last}}</h2>
+					<p class="dataset-description">
+						{% autoescape on %}
+						{{dataset.description|linebreaks|truncatewords:50}}
+						{% endautoescape %}
+					</p>
+				</div>
+
+				<div class="dataset-active-info">
+					{% if user.is_authenticated and user.pk == dataset.user_id or user.is_superuser %}
+					<div class="crud">
+					  <form action="{% url 'dataset_delete' dataset.pk %}" method="post" id="delete_form">
+						{% csrf_token %}
+						<button class="crud-delete" type="submit">Delete</button>
+					  </form>
+					</div>
+					{% endif %}
+					<p class="dataset-link"><a href="{{ dataset.get_absolute_url }}" class="menu-link">More...</a></p>
+
+				</div>
+			</div>
+
+		</li>
+		{% empty %}
+		<li>Datasets not found...</li>
+	{% endfor %}
+</ul>
+
+<script>
+    searchUrl = "{% url 'dataset_search' %}";
+</script>
+
+{% endblock %}

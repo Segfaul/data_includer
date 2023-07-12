@@ -1,0 +1,18 @@
+{% extends 'dataset/base.html' %}
+
+{% block content %}
+
+<form action="{% url 'dataset_add' %}", method="post", enctype="multipart/form-data" id="add_form">
+    <!--Produce token if it exists, avoid sql inj-->
+    {% csrf_token %}
+
+    <div class="form-error">{{ form.non_field_errors }}</div>
+
+{% for f in form %}
+<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+<div class="form-error">{{ f.errors }}</div>
+{% endfor %}
+    <button type="submit" class="submit">add</button>
+</form>
+
+{% endblock %}

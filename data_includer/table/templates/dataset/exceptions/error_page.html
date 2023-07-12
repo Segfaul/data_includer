@@ -1,0 +1,7 @@
+{% extends 'dataset/base.html' %}
+{% load static %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    <p>{{ error_message }}</p>
+    <img src="{% static 'books/img/book.gif' %}" alt="Book Gif" />
+{% endblock %}

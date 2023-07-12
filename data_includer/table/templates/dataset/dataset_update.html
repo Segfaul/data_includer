@@ -1,0 +1,16 @@
+{% extends 'dataset/base.html' %}
+
+{% block content %}
+  <span class="header-title">Editing dataset "{{ dataset.file.name|split:"/"|last }}"</span>
+  <form method="post", action="{% url 'dataset_update' dataset.id %}", enctype="multipart/form-data" id="update_form" novalidate>
+      {% csrf_token %}
+  
+      <div class="form-error">{{ form.non_field_errors }}</div>
+
+  {% for f in form %}
+  <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+  <div class="form-error">{{ f.errors }}</div>
+  {% endfor %}
+      <button class="submit-update" type="submit">Save</button>
+  </form>
+{% endblock %}

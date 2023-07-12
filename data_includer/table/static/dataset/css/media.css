@@ -1,0 +1,19 @@
+/* Media requests */
+@media screen and (max-width: 600px) {
+    .mainmenu {
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .menu-link {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .last-diversify {
+        display: none;
+    }
+}

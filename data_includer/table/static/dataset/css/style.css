@@ -1,0 +1,447 @@
+.table-sortable th {
+	cursor: pointer;
+}
+
+.table-sortable .th-sort-asc::after {
+	content: "\25b4";
+}
+
+.table-sortable .th-sort-desc::after {
+	content: "\25be";
+}
+
+.table-sortable .th-sort-asc::after,
+.table-sortable .th-sort-desc::after {
+	margin-left: 5px;
+}
+
+.table-sortable .th-sort-asc,
+.table-sortable .th-sort-desc {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+/* General Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Styles for headers */
+header {
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.mainmenu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mainmenu li {
+    margin-right: 10px;
+}
+
+.menu-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 5px;
+}
+
+.menu-link:hover {
+    color: #6e6e6e;
+}
+
+.last-diversify {
+    margin: 0 5px;
+}
+
+/* Styles for main content */
+main {
+    flex-grow: 1;
+    padding: 20px 200px;
+}
+
+.content-block {
+    margin-bottom: 20px;
+}
+
+/* Стили для пагинации */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.page a {
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.page-selected {
+    font-weight: bold;
+}
+
+/* Styles for footer */
+footer {
+    flex-shrink: 1;
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
+.intro {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.intro-pic{
+    width: 97%;
+}
+.intro-pic::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.intro-description {
+    font-size: 20px;
+    word-wrap: break-word;
+}
+
+.action-menu {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dataset {
+    display: flex;
+    flex-direction: column;
+}
+
+.dataset-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#search_input {
+    width: 200px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.dataset-add {
+    margin-left: auto;
+}
+
+.dataset-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.dataset-list li {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+}
+
+.dataset-date {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.crud-delete {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.crud-delete:hover {
+    background-color: #d32f2f;
+}
+
+.dataset-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.dataset-description {
+    margin-bottom: 10px;
+}
+
+.dataset-link {
+    margin-top: auto;
+}
+
+form {
+    align: center;
+    max-width: 85%;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-error {
+    color: red;
+    margin-bottom: 5px;
+}
+
+.submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-update{
+    background-color: #dabf58;
+    color: white;
+    padding: 10px 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-update:hover{
+    background-color: #e8cb5d;
+}
+
+.submit:hover {
+    background-color: #45a049;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-static-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.detail-description {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dataset-title {
+    font-size: 24px;
+}
+
+.dataset-description {
+    font-size: 16px;
+}
+
+.detail-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.table-sortable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table-sortable th,
+.table-sortable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.table-sortable th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.table-sortable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-sortable tbody tr:hover {
+    background-color: #e5e5e5;
+}
+
+.table-sortable td {
+    vertical-align: middle;
+    line-height: 1.4;
+}
+
+.table-sortable a {
+    color: #333;
+    text-decoration: none;
+}
+
+.table-sortable a:hover {
+    text-decoration: underline;
+}
+
+#toggle-button {
+    background-color: #6e6e6e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#toggle-button:hover {
+    background-color: #8c8c8c;
+}
+
+.hidden {
+    display: none;
+}
+
+.crud-update {
+    margin-left: 120px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.crud-update:hover {
+    background-color: #45a049;
+}
+
+.api {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.api-delete,
+.api-generate {
+    display: inline-block;
+    padding: 8px;
+    font-size: 13px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.api-delete {
+    background-color: #f44336;
+}
+.api-delete:hover {
+    background-color: #940d0d;
+}
+
+.api-generate {
+    background-color: #4CAF50;
+}
+.api-generate:hover {
+    background-color: #2e7e31;
+}
+
+.profile-token {
+    min-width: 330px;
+    padding: 10px;
+    background-color: #f2f2f2;
+    color: #333;
+    border-radius: 4px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-right: 50px;
+    margin-left: 5px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+

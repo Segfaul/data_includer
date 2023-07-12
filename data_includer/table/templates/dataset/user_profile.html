@@ -1,0 +1,36 @@
+{% extends 'dataset/base.html' %}
+
+{% block content %}
+    <div class="profile">
+        <div class="profile-description">
+            <h1 class="profile-name">{{user.username}}</h1>
+        </div>
+
+        <div class="api">
+            <div class="profile-description">
+                <h4 class="profile-token" id="api_token">{{user.api_token}}</h4>
+            </div>
+
+            <div class="tooltip">
+                <button onclick="myFunction()" onmouseout="outFunc()" class="button-with-tooltip">
+                    <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                    &#128209
+                </button>
+            </div>
+
+            <div class="crud">
+                {% if user.api_token %}
+                <a href="{% url 'api_revoke_token' %}" class="api-delete">&#10006;</a>
+                {% else %}
+                <a href="{% url 'api_generate_token' %}" class="api-generate">&#9851;</a>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    profileURL = "{% url 'user_profile' user.pk %}";
+</script>
+
+{% endblock %}
