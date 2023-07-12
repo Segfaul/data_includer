@@ -63,14 +63,14 @@ WSGI_APPLICATION = 'data_includer.wsgi.application'
 # If we're in production mode it's easier to configure sqlite3 db
 DATABASES = {
     'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': env('POSTGRES_DB'),
-    #     'USER': env('POSTGRES_USER'),
-    #     'PASSWORD': env('POSTGRES_PASSWORD'),
-    #     'HOST': env('POSTGRES_HOST'),
-    #     'PORT': env('POSTGRES_PORT'),
-    # } if not DEBUG else
-    # {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': env('POSTGRES_HOST'),
+        'PORT': env('POSTGRES_PORT'),
+    } if not DEBUG else
+    {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
